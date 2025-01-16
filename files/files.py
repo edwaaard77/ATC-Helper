@@ -5,7 +5,7 @@ schedule_rostov_acc_1_2025 = types.FSInputFile(
     path="/root/OrVD/files/schedule_rostov_acc_1_2025.png"
 )
 schedule_rostov_acc_2_2025 = types.FSInputFile(
-    path="/root/app/files/schedule_rostov_acc_2_2025.png"
+    path="/app/files/schedule_rostov_acc_2_2025.png"
 )
 schedule_rostov_acc_3_2025 = types.FSInputFile(
     path="/root/OrVD/files/schedule_rostov_acc_3_2025.png"
