@@ -88,7 +88,7 @@ keyboard_study = InlineKeyboardMarkup(
 keyboard_sbornik = InlineKeyboardMarkup(
     inline_keyboard=[[button_instructor],
                      [button_trainee],
-                     [button_study_back]]
+                     [button_version_back]]
 )
 keyboard_admin_exit = InlineKeyboardMarkup(
     inline_keyboard=[[button_admin_exit]]
