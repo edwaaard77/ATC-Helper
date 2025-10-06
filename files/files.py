@@ -55,4 +55,10 @@ document_297 = types.FSInputFile(
 document_version_answers = types.FSInputFile(
     path="/app/files/Ответы.pdf"
 )
+sbornik_instructor = types.FSInputFile(
+    path="/app/files/Сборник для инструктора.pdf"
+)
+sbornik_trainee = types.FSInputFile(
+    path="/app/files/Сборник для стажера.pdf"
+)
 

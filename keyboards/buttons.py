@@ -129,9 +129,9 @@ button_version_answers = InlineKeyboardButton(
     text="📚 Ответы",
     callback_data="button_version_answers_pressed"
 )
-button_version_answers_back = InlineKeyboardButton(
+button_study_back = InlineKeyboardButton(
     text="⬅️ Назад",
-    callback_data="button_version_answers_back_pressed"
+    callback_data="button_study_back_pressed"
 )
 button_notes = InlineKeyboardButton(
     text="✍️ Заметки",
@@ -148,6 +148,18 @@ button_study = InlineKeyboardButton(
 button_etian = InlineKeyboardButton(
     text="🇬🇧 ETIAN Guide",
     url="https://disk.yandex.ru/d/gvruzMBzgjFDpA"
+)
+button_sbornik = InlineKeyboardButton(
+    text="📕 Сборник задач",
+    callback_data="button_sbornik_pressed"
+)
+button_instructor = InlineKeyboardButton(
+    text="🥷 Инструктор",
+    callback_data="button_instructor_pressed"
+)
+button_trainee = InlineKeyboardButton(
+    text="🐣 Стажер",
+    callback_data="button_trainee_pressed"
 )
 button_version_back = InlineKeyboardButton(
     text="⬅️ Назад",

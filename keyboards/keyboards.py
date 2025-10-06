@@ -4,9 +4,10 @@ from keyboards.buttons import button_schedule, button_docs, button_version, butt
     button_dinner_sim_back, button_replace_back, button_work, button_replace, button_dinner, button_sim, \
     button_main_menu, button_VK, button_138, button_128, button_293, button_362, button_60, button_297, \
     button_docs_back, button_version_apple, button_version_google, button_version_website, button_version_answers, \
-    button_version_answers_back, button_rostov_acc_1, button_rostov_acc_2, button_rostov_acc_3, button_rostov_acc_4, button_rostov_acc_5, \
+    button_study_back, button_rostov_acc_1, button_rostov_acc_2, button_rostov_acc_3, button_rostov_acc_4, button_rostov_acc_5, \
     button_rostov_acc_6, button_notes, button_delete_a_note, button_study, button_etian, button_version_back, button_radar, \
-    button_vpn, button_admin_exit, button_stavropol, button_rostov_acc, button_transport
+    button_vpn, button_admin_exit, button_stavropol, button_rostov_acc, button_transport, button_sbornik, button_instructor, \
+    button_trainee
 
 keyboard_center = InlineKeyboardMarkup(
     inline_keyboard=[[button_rostov_acc], [button_stavropol]]
@@ -68,8 +69,8 @@ keyboard_version_rows = [keyboard_version_1st_row,
 keyboard_version = InlineKeyboardMarkup(
     inline_keyboard=keyboard_version_rows
 )
-keyboard_version_answers_back = InlineKeyboardMarkup(
-    inline_keyboard=[[button_version_answers_back]]
+keyboard_study_back = InlineKeyboardMarkup(
+    inline_keyboard=[[button_study_back]]
 )
 keyboard_notes_not_set_back = InlineKeyboardMarkup(
     inline_keyboard=[[button_main_menu]]
@@ -81,7 +82,13 @@ keyboard_notes_set_back = InlineKeyboardMarkup(
 keyboard_study = InlineKeyboardMarkup(
     inline_keyboard=[[button_version],
                      [button_etian],
+                     [button_sbornik],
                      [button_main_menu]]
+)
+keyboard_sbornik = InlineKeyboardMarkup(
+    inline_keyboard=[[button_instructor],
+                     [button_trainee],
+                     [button_study_back]]
 )
 keyboard_admin_exit = InlineKeyboardMarkup(
     inline_keyboard=[[button_admin_exit]]

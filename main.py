@@ -15,11 +15,11 @@ from files.files import (schedule_rostov_acc_1_2025, schedule_rostov_acc_2_2025,
                          schedule_rostov_acc_4_2025, schedule_rostov_acc_5_2025,
                          schedule_rostov_acc_6_2025, replace_4, replace_5_1, replace_5_2, document_VK, document_138,
                          document_128, document_293, document_362, document_60, document_297, document_version_answers,
-                         schedule_stavropol)
+                         schedule_stavropol, sbornik_instructor, sbornik_trainee)
 from keyboards.keyboards import keyboard_main, keyboard_work_back, keyboard_dinner_sim_back, \
     keyboard_replace_back, keyboard_schedule_rostov_acc, keyboard_schedule_stavropol, keyboard_docs, keyboard_docs_back, \
-    keyboard_version, keyboard_version_answers_back, keyboard_notes_not_set_back, keyboard_notes_set_back, \
-    keyboard_study, keyboard_rostov_acc, keyboard_admin_exit
+    keyboard_version, keyboard_notes_not_set_back, keyboard_notes_set_back, \
+    keyboard_study, keyboard_rostov_acc, keyboard_admin_exit, keyboard_sbornik, keyboard_study_back
 from commands import router as commands_router
 from states.states import States
 from database.models import async_session
@@ -676,6 +676,68 @@ async def process_button_version_press(callback: CallbackQuery):
     await callback.answer()
 
 
+@dp.callback_query(F.data == "button_sbornik_pressed")
+async def process_button_version_press(callback: CallbackQuery):
+    time_of_action = datetime.datetime.now()
+    last_seen_time = time_of_action.strftime("%Y-%m-%d %H:%M")
+    print(last_seen_time)
+    await rq.set_user(callback.from_user.id)
+    await rq.set_time(callback.from_user.id, last_seen_time)
+    await callback.message.edit_text(
+        text="<b>Для кого нужен сборник?</b>",
+        reply_markup=keyboard_sbornik
+    )
+    await callback.answer()
+
+
+@dp.callback_query(F.data == "button_instructor_pressed")
+async def process_button_instructor_press(callback: CallbackQuery):
+    time_of_action = datetime.datetime.now()
+    last_seen_time = time_of_action.strftime("%Y-%m-%d %H:%M")
+    print(last_seen_time)
+    await rq.set_user(callback.from_user.id)
+    await rq.set_time(callback.from_user.id, last_seen_time)
+    await callback.message.bot.send_chat_action(
+        chat_id=callback.message.chat.id,
+        action=ChatAction.UPLOAD_DOCUMENT
+    )
+    msg_sbornik_instructor = await callback.message.answer_document(
+        document=sbornik_instructor,
+        caption="Сборник задач потенциально конфликтных ситуаций при ОВД <b>для инструктора</b>",
+        reply_markup=keyboard_study_back)
+    msg_sbornik_instructor_id = msg_sbornik_instructor.message_id
+    await callback.answer()
+    await asyncio.sleep(150000)
+    await bot.delete_message(
+        chat_id=callback.message.chat.id,
+        message_id=msg_sbornik_instructor_id
+    )
+
+
+@dp.callback_query(F.data == "button_trainee_pressed")
+async def process_button_trainee_press(callback: CallbackQuery):
+    time_of_action = datetime.datetime.now()
+    last_seen_time = time_of_action.strftime("%Y-%m-%d %H:%M")
+    print(last_seen_time)
+    await rq.set_user(callback.from_user.id)
+    await rq.set_time(callback.from_user.id, last_seen_time)
+    await callback.message.bot.send_chat_action(
+        chat_id=callback.message.chat.id,
+        action=ChatAction.UPLOAD_DOCUMENT
+    )
+    msg_sbornik_trainee = await callback.message.answer_document(
+        document=sbornik_trainee,
+        caption="Сборник задач потенциально конфликтных ситуаций при ОВД <b>для стажера</b>",
+        reply_markup=keyboard_study_back)
+    msg_sbornik_trainee_id = msg_sbornik_trainee.message_id
+    await callback.answer()
+    await asyncio.sleep(150000)
+    await bot.delete_message(
+        chat_id=callback.message.chat.id,
+        message_id=msg_sbornik_trainee_id
+    )
+
+
 @dp.callback_query(F.data == "button_version_answers_pressed")
 async def process_button_version_answers_press(callback: CallbackQuery):
     time_of_action = datetime.datetime.now()
@@ -690,7 +752,7 @@ async def process_button_version_answers_press(callback: CallbackQuery):
     msg_version = await callback.message.answer_document(
         document=document_version_answers,
         caption="Ответы на 15-ю версию",
-        reply_markup=keyboard_version_answers_back)
+        reply_markup=keyboard_study_back)
     msg_version_id = msg_version.message_id
     await callback.answer()
     await asyncio.sleep(150000)
@@ -700,8 +762,8 @@ async def process_button_version_answers_press(callback: CallbackQuery):
     )
 
 
-@dp.callback_query(F.data == "button_version_answers_back_pressed")
-async def process_button_version_answers_back_pressed(callback: CallbackQuery):
+@dp.callback_query(F.data == "button_study_back_pressed")
+async def process_button_study_back_pressed(callback: CallbackQuery):
     await callback.message.delete()
 
 
